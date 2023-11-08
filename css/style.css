@@ -609,7 +609,6 @@ ol {
 	position: absolute;
 	right: 18px;
 	top: 9px;
-	content: "3";
 	font-family: "ElegantIcons";
 	font-size: 18px;
 	color: #ffffff;
@@ -1323,17 +1322,20 @@ ol {
 	margin-right: 0;
 }
 
-.product__item__pic__hover li:hover a {
+.product__item__pic__hover li:hover a,
+.product__item__pic__hover li:hover button {
 	background: #7fad39;
 	border-color: #7fad39;
 }
 
-.product__item__pic__hover li:hover a i {
+.product__item__pic__hover li:hover a i,
+.product__item__pic__hover li:hover button i {
 	color: #ffffff;
 	transform: rotate(360deg);
 }
 
-.product__item__pic__hover li a {
+.product__item__pic__hover li a,
+.product__item__pic__hover li button {
 	font-size: 16px;
 	color: #1c1c1c;
 	height: 40px;
@@ -1351,7 +1353,8 @@ ol {
 	transition: all, 0.5s;
 }
 
-.product__item__pic__hover li a i {
+.product__item__pic__hover li a i,
+.product__item__pic__hover li button i {
 	position: relative;
 	transform: rotate(0);
 	-webkit-transition: all, 0.3s;
@@ -1563,17 +1566,20 @@ ol {
 	margin-right: 0;
 }
 
-.product__item__pic__hover li:hover a {
+.product__item__pic__hover li:hover a,
+.product__item__pic__hover li:hover button {
 	background: #7fad39;
 	border-color: #7fad39;
 }
 
-.product__item__pic__hover li:hover a i {
+.product__item__pic__hover li:hover a i,
+.product__item__pic__hover li:hover button i  {
 	color: #ffffff;
 	transform: rotate(360deg);
 }
 
-.product__item__pic__hover li a {
+.product__item__pic__hover li a,
+.product__item__pic__hover li button {
 	font-size: 16px;
 	color: #1c1c1c;
 	height: 40px;
@@ -1591,7 +1597,8 @@ ol {
 	transition: all, 0.5s;
 }
 
-.product__item__pic__hover li a i {
+.product__item__pic__hover li a i,
+.product__item__pic__hover li button i  {
 	position: relative;
 	transform: rotate(0);
 	-webkit-transition: all, 0.3s;
@@ -2099,6 +2106,8 @@ ol {
 	border-bottom: 1px solid #e1e1e1;
 	padding-bottom: 20px;
 	margin-bottom: 25px;
+	text-align: center; /* Center the text */
+
 }
 
 .checkout__form p {
@@ -2190,7 +2199,7 @@ ol {
 
 .checkout__order {
 	background: #f5f5f5;
-	padding: 40px;
+	padding: 70px;
 	padding-top: 30px;
 }
 
@@ -3466,3 +3475,13 @@ ol {
 		font-size: 24px;
 	}
 }
+	.add_to_cart_button{
+		background-color: white;
+		border-radius: 50px;
+		border:0px;
+	}
+	.add_to_cart_button:hover{
+		background-color: #7fad39 ;
+		color: white;	
+	}
+
