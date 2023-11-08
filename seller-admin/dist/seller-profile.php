@@ -109,7 +109,7 @@
           <div class="col-7 col-md-5 col-lg-3">
             <div class="card profile-widget">
               <a href="cert/<?php echo $organic_cert; ?>" data-lightbox="organic-cert-gallery">
-                <img src="cert/<?php echo $organic_cert; ?>" alt="Organic Certification" width="200px" height="260px">
+                <img src="cert/<?php echo $organic_cert; ?>" alt="Organic Certification" width="225px" height="260px">
               </a>
             </div>
           </div>
