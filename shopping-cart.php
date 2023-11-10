@@ -187,7 +187,19 @@ $result = $stmt->get_result();
                                         $product_image = $row['image'];
                                         $product_price = $row['price'];
                                         $qty_selected = $row['quantity'];
+                                        $product_stock = $row['stock']; 
                                         $total_amount += ($qty_selected * $product_price); // Update total amount
+                                        if ($product_stock == 0) {
+                                            // Delete the item from the cart
+                                            $delete_query = "DELETE FROM cart WHERE product_id = $product_id AND user_id = $user_id";
+                                    
+                                            if (mysqli_query($db, $delete_query)) {
+                                                $remove_message = "The product '$product_name' has been removed from your cart.";
+                                            } else {
+                                                echo mysqli_error($db) . "The query was: " . $delete_query;
+                                            }
+                                            continue; // Skip the rest of the loop for this product
+                                        }
                                     ?>
                                         <tr>
                                             <td>
