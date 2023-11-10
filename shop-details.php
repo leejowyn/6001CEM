@@ -47,7 +47,7 @@ if ($result) {
     $stock = $row['stock'];
     $seller_name = $row['seller_name'];
 
-    
+
 
     // Close the result set 
     mysqli_free_result($result);
@@ -65,6 +65,20 @@ if ($countResult) {
 } else {
     $reviewCount = 0; // Default to 0 if there are no reviews
 }
+// Query to get the sum of ratings
+$sumRatingSql = "SELECT SUM(rating) AS totalRating FROM review WHERE order_item_id IN (SELECT order_item_id FROM order_items WHERE product_id = $product_id)";
+$sumRatingResult = mysqli_query($db, $sumRatingSql);
+
+if ($sumRatingResult) {
+    $sumRatingRow = mysqli_fetch_assoc($sumRatingResult);
+    $totalRating = $sumRatingRow['totalRating'];
+    mysqli_free_result($sumRatingResult);
+} else {
+    $totalRating = 0; // Default to 0 if there are no reviews
+}
+
+// Calculate average rating
+$averageRating = ($reviewCount > 0) ? $totalRating / $reviewCount : 0;
 
 ?>
 <!DOCTYPE html>
@@ -151,19 +165,19 @@ if ($countResult) {
                         <h3><?php echo $product_name; ?></h3>
                         <?php
                         for ($i = 1; $i <= 5; $i++) {
-                            if ($i <= $reviewCount) {
-                                echo '<i class="fa fa-star-o"></i>';
-                            } else {
+                            if ($i <= $averageRating) {
                                 echo '<i class="fa fa-star"></i>';
+                            } else {
+                                echo '<i class="fa fa-star-o"></i>';
                             }
-                        } ?>
+                        }
+                        ?>
                         <div class="product__details__price">RM <?php echo number_format($price, 2); ?></div>
                         <?php echo "<p>$description </p>"; ?>
                         <form method="post" action="add-cart.php">
                             <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                             <button type="submit" class="primary-btn">Add to Cart</button>
                         </form>
-                        <!-- <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a> -->
                         <ul>
                             <li><b>Availability</b> <span><?php echo $stock; ?> items left</span></li>
                             <li><b>Shipping</b> <span>03 day shipping. <samp>RM 50 Free Shipping</samp></span></li>
@@ -172,6 +186,7 @@ if ($countResult) {
                         </ul>
                     </div>
                 </div>
+
                 <div class="col-lg-12">
                     <div class="product__details__tab">
                         <ul class="nav nav-tabs" role="tablist">
