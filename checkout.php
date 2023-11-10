@@ -68,11 +68,23 @@ if (isset($_POST['payment'])) {
             exit();
         }
 
-        header('location: seller-admin/dist/order-info.php?order_id=' . $order_id);
-        exit();
-    } else {
-        echo "Error inserting order: " . mysqli_error($db);
-    }
+        if (mysqli_query($db, $update_total_query)) {
+            // Clear the cart for the user
+            $clear_cart_query = "DELETE FROM cart WHERE user_id = '$user_id'";
+            if (mysqli_query($db, $clear_cart_query)) {
+                // Cart cleared successfully
+                header('location: seller-admin/dist/order-info.php?order_id=' . $order_id);
+                exit();
+            } else {
+                // Handle the error if the cart couldn't be cleared
+                echo "Error clearing cart: " . mysqli_error($db);
+                exit();
+            }
+       }
+     } else {
+            echo "Error updating total amount: " . mysqli_error($db);
+            exit();
+        }
 
     mysqli_close($db);
 }
