@@ -32,7 +32,7 @@ if (isset($_POST['signin'])) {
 
         if ($sellerStatus == 'Pending') {
           // Seller is pending, don't allow login
-          $signinemailErr = "Your seller account is pending approval. You cannot log in at the moment." . "<br>";
+          $signinemailErr = "Your seller account is pending approval.". "<br>". "You cannot log in at the moment. Wait for 3-5 days" . "<br>";
         } else {
           // Seller is approved, continue with the password verification
           $hashedPasswordFromDB = $row['seller_password'];
