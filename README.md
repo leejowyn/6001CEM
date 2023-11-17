@@ -7,7 +7,7 @@ OrgaCare is an e-commerce website specializing in organic products.
 *******************************
 Admin
 
-email: Admin@gmail.com
+email: admin@gmail.com
 
 password: Test123@
 *******************************
