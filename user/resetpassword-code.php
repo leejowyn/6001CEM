@@ -20,7 +20,7 @@ function send_password_reset($get_name, $get_email, $token){
 	$mail->Port = '587';
 
 	$mail->setFrom('Jowyn2002@gmail.com', 'OrgaCare'); // Gmail address which you used as SMTP server
-	$mail->addAddress($get_email); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
+	$mail->addAddress('Jowyn2002@gmail.com'); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
 
 	$mail->isHTML(true);
 	$mail->Subject = 'Reset Password';
