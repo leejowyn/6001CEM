@@ -50,7 +50,7 @@
                 <p class="text-muted">Enter your new password</p>
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="seller_email" tabindex="1" required autofocusvalue="
+                    <input id="email" type="email" class="form-control" name="seller_email" tabindex="1" value="
                     <?php if (isset($_GET['seller_email'])) {echo $_GET['seller_email'];} ?>"  />
                   </div>
 
