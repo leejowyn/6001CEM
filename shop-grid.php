@@ -149,27 +149,31 @@ if (isset($_POST['logout'])) {
 
                         <div id="product-list" class="row">
                             <?php
-                            while ($row = $result->fetch_assoc()) {
-                            ?>
+                        while ($row = $result->fetch_assoc()) {
+                            // Check if the product stock is greater than 0
+                            if ($row['stock'] > 0) {
+                        ?>
                                 <div class="col-lg-4 col-md-6 col-sm-6 product-category <?php echo $row['category']; ?>">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="seller-admin/dist/uploads/<?php echo $row['image']; ?>">
-                                        <ul class="product__item__pic__hover">
-                                            <form action="add-cart.php" Method="POST">
-                                                <li><button type="submit" class="add_to_cart_button"><i class="fa fa-shopping-cart"></i></button></li>
-                                                <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
-                                            </form>
-
-                                        </ul>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <h6><a href="shop-details.php?product_id=<?php echo $row['product_id']; ?>"><?php echo $row['product_name']; ?></a> </h6>
-                                        <h5>RM<?php echo $row['price']; ?></h5>
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg" data-setbg="seller-admin/dist/uploads/<?php echo $row['image']; ?>">
+                                            <ul class="product__item__pic__hover">
+                                                <form action="add-cart.php" Method="POST">
+                                                    <li><button type="submit" class="add_to_cart_button"><i class="fa fa-shopping-cart"></i></button></li>
+                                                    <input type="hidden" name="product_id" value="<?php echo $row['product_id']; ?>">
+                                                </form>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="shop-details.php?product_id=<?php echo $row['product_id']; ?>"><?php echo $row['product_name']; ?></a> </h6>
+                                            <h5>RM<?php echo $row['price']; ?></h5>
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                            <?php } ?>
-                        </div>
+                        <?php
+                            }
+                        }
+                        ?>
+                    </div>
 
                     </div>
                 </div>
