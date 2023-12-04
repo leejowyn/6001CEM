@@ -58,6 +58,12 @@ if (isset($_POST['payment'])) {
                 echo "Error inserting order item: " . mysqli_error($db);
                 exit();
             }
+            // --- Addition: Update product quantity in the 'product' table ---
+            $update_product_quantity_query = "UPDATE product SET stock = stock - '$quantity' WHERE product_id = '$product_id'";
+            if (!mysqli_query($db, $update_product_quantity_query)) {
+                echo "Error updating product quantity: " . mysqli_error($db);
+                exit();
+            }
         }
 
         // Update the total amount in the 'orders' table
